@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h3>Informations</h3>
+<hr>
+
+
+<div class="d-flex justify-content-center mb-3">
+{% if informations %}
+
+<div class="card text-white bg-primary mb-3 vh-90 w-75 p-3 me-5">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Science</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Date</th>
+        <th scope="col">Content</th>
+        <th scope="col">Add My List</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for information in informations %}
+
+    <tr>
+        <th scope="row">{{information.id}}</th>
+        <td><a href="{% url 'informations:detail' information.id%}">{{information.title}}</a></td>
+        <td>{{information.author.username}}</td>
+        <td>{{information.created_date}}</td>
+        <td>{{information.content|truncatewords:10}}</td>
+        <td><a href="{% url 'informations:detail' information.id%}" class="btn btn-danger">Add<a></td>
+
+    </tr> 
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% else %}
+<div class="alert alert-danger">
+    Information not found
+</div>
+
+{% endif %}
+</div>
+{% endblock body %}

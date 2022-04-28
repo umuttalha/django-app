@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+
+<h3>{{information.title}}</h3>
+<p>by {{information.author.username}}</p>
+<small>{{information.created_date}}</small>
+<hr>
+{% if information.information_field %}
+
+<img class="img-fluid rounded" src="information.information_field.url">
+<br><br>
+{% endif %}
+<br>
+
+
+<p>{{information.content}}</p>
+
+{% endblock body %}

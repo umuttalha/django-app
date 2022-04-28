@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h3>Dashboard</h3>
+<hr>
+<p>
+    Welcome {{request.user.username}}
+</p>
+<a class="btn btn-danger" href="/informations/addinfo">Add</a>
+<hr>
+
+{% if informations %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Date</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for information in informations %}
+
+    <tr>
+        <th scope="row">{{information.id}}</th>
+        <td><a href="{% url 'information:detail' information.id%}">{{information.title}}</a></td>
+        
+        <td>{{information.author.username}}</td>
+        <td>{{information.created_date}}</td>
+        <td><a href="/informations/update/{{information.id}}" class="btn btn-danger">Update<a></td>
+        <td><a href="/informations/delete/{{information.id}}" class="btn btn-danger">Delete<a></td>
+    </tr>
+
+      
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+{% else %}
+
+<div class="alert alert-danger">
+    You do not have a information
+</div>
+
+{% endif %}
+
+{% endblock body %}
