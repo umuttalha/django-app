@@ -29,7 +29,7 @@
 
     <tr>
         <th scope="row">{{information.id}}</th>
-        <td><a href="{% url 'information:detail' information.id%}">{{information.title}}</a></td>
+        <td><a href="/informations/detail/{{information.id}}">{{information.title}}</a></td>
         
         <td>{{information.author.username}}</td>
         <td>{{information.created_date}}</td>
